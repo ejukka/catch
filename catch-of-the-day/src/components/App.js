@@ -21,11 +21,24 @@ class App extends React.Component {
     }
 
     componentWillMount() {
+
+        //this runs right before  the <App> is rendered
         this.ref = base.syncState(`${this.props.params.storeId}/fishes`
         , {
             context: this,
             state: 'fishes'
         });
+
+        //check if there is any orders in localstorage
+        const localStoregeRef = localStorage.getItem(`order-${this.props.params.storeId}`);
+
+        if(localStoregeRef) {
+            //update our App components order state
+            this.setState({
+                order: JSON.parse(localStoregeRef)
+            });
+
+        }
     }
 
     componentWillUnmount() {
@@ -33,11 +46,10 @@ class App extends React.Component {
     }   
 
     componentWillUpdate(nextProps, nextState){
-        console.log("something changed");
-        console.log({nextProps, nextState});
-
         localStorage.setItem(`order-${this.props.params.storeId}`, 
         JSON.stringify(nextState.order));
+
+
     }
 
     addFish(fish){
