@@ -23,18 +23,24 @@ class Inventory extends React.Component {
     renderInventory(key) {
         const fish = this.props.fishes[key];
         return(
-            <div className="" key={key}>
-                <input type="text" name="name" value={fish.name} placeholder="test" onChange={(e) => this.handleChange(e, key)} />
-                <input type="text" name="price" value={fish.price} placeholder="test" onChange={(e) => this.handleChange(e, key)} />
+            <div className="fish-edit" key={key}>
+                <input type="text" name="name" value={fish.name} placeholder="name" 
+                    onChange={(e) => this.handleChange(e, key)} />
+                <input type="text" name="price" value={fish.price} placeholder="price" 
+                    onChange={(e) => this.handleChange(e, key)} />
                 
-                    <select type="text" name="status" value={fish.status} placeholder="test" onChange={(e) => this.handleChange(e, key)} >
+                    <select type="text" name="status" value={fish.status} placeholder="status" 
+                        onChange={(e) => this.handleChange(e, key)} >
                         <option value="available">Fresh!</option>
                         <option value="unavailable">Sold Out!</option>
                     </select>
 
-                <textarea type="text" name="desc" value={fish.desc} placeholder="test" onChange={(e) => this.handleChange(e, key)} >
+                <textarea type="text" name="desc" value={fish.desc} placeholder="desc" 
+                    onChange={(e) => this.handleChange(e, key)} >
                 </textarea>
-                <input type="text" name="image" value={fish.image} placeholder="test" onChange={(e) => this.handleChange(e, key)} />
+                <input type="text" name="image" value={fish.image} placeholder="image" 
+                    onChange={(e) => this.handleChange(e, key)} />
+                <button onClick={() => this.props.removeFish(key)}>Remove fish</button>
             </div>
         )
     }
